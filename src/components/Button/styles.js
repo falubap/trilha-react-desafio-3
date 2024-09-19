@@ -10,7 +10,7 @@ export const ButtonContainer = styled.button`
     min-width: 120px;
     width: 80%;
     
-    ${({variant}) => variant !== "primary" && css`
+    ${({variant}) => variant === "secondary" && css`
         min-width: 167px;
         height: 33px;
         
@@ -27,4 +27,21 @@ export const ButtonContainer = styled.button`
             border-radius: 22px;
         }
     `}
+
+    ${({variant}) => variant === "fazerlogin" && css`
+        background: #1E192C;
+        position: relative;
+    
+        min-width: 167px;
+        height: 33px;
+        color: #23DD7A;
+        min-width: 120px;
+        width: 50%; 
+
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 19x;
+    `}    
 `

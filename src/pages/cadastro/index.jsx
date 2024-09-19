@@ -8,7 +8,7 @@ import { api } from '../../services/api';
 import { useForm } from "react-hook-form";
 
 
-import { Container, Title, Column, TitleLogin, SubtitleLogin, DelcaroText, JaTenhoText, Row, Wrapper, FazerLoginText } from './styles';
+import { Container, Title, Column, TitleLogin, SubtitleLogin, DelcaroText, JaTenhoText, Row, Wrapper } from './styles';
 
 const Cadastro = () => {
 
@@ -19,18 +19,24 @@ const Cadastro = () => {
         mode: 'onChange',
     });
 
+
+    const handleClickLogIn = () => {
+        
+        navigate('/login')
+    }
+
     const onSubmit = async (formData) => {
         try{
             const {data} = await api.get(`/users?nome=${formData.nome}email=${formData.email}&senha=${formData.senha}`);
             
             if(data.length && data[0].id){
-                navigate('/feed') 
+                navigate('/login') 
                 return
             }
 
             alert('Usuário ou senha inválido')
-        }catch(e){
-            //TODO: HOUVE UM ERRO
+        }catch{
+            alert('Houve um erro, tente novamente')
         }
     };
 
@@ -54,7 +60,7 @@ const Cadastro = () => {
                     {errors.email && <span>E-mail é obrigatório</span>}
                     <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
                     {errors.senha && <span>Senha é obrigatório</span>}
-                    <Button title="Criar minha conta" variant="secondary" type="submit"/>
+                    <Button title="Criar minha conta" variant="secondary" type="submit" onClick={handleClickLogIn}/>
                 </form>
                 <Row>
                     <DelcaroText>Ao clicar em "criar minha conta grátis", declaro que aceito as Políticas
@@ -62,7 +68,7 @@ const Cadastro = () => {
                 </Row>
                 <Row>
                     <JaTenhoText>Já tenho conta.</JaTenhoText> 
-                    <FazerLoginText>Fazer Login</FazerLoginText>
+                    <Button title = "Fazer Login" variant="fazerlogin" type="submit" onClick={handleClickLogIn}/>
                 </Row>
                 </Wrapper>
             </Column>

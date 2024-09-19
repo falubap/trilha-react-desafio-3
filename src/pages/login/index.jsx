@@ -4,15 +4,19 @@ import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { api } from '../../services/api';
-
 import { useForm } from "react-hook-form";
 
 
-import { Container, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
+import { Container, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, Row, Wrapper } from './styles';
 
 const Login = () => {
 
     const navigate = useNavigate()
+
+    const handleClickLogIn = () => {
+        
+        navigate('/cadastro')
+    }
 
     const { control, handleSubmit, formState: { errors  } } = useForm({
         reValidateMode: 'onChange',
@@ -29,8 +33,8 @@ const Login = () => {
             }
 
             alert('Usuário ou senha inválido')
-        }catch(e){
-            //TODO: HOUVE UM ERRO
+        }catch{
+            alert('Houve um erro, tente novamente')
         }
     };
 
@@ -52,11 +56,11 @@ const Login = () => {
                     {errors.email && <span>E-mail é obrigatório</span>}
                     <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
                     {errors.senha && <span>Senha é obrigatório</span>}
-                    <Button title="Entrar" variant="secondary" type="submit"/>
+                    <Button title="Entrar" variant="secondary" type="submit" onClick={onSubmit}/>
                 </form>
                 <Row>
                     <EsqueciText>Esqueci minha senha</EsqueciText>
-                    <CriarText>Criar Conta</CriarText>
+                    <Button title = "Criar conta" variant="fazerlogin" type="submit" onClick={handleClickLogIn}/>
                 </Row>
                 </Wrapper>
             </Column>

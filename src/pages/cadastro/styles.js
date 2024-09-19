@@ -33,7 +33,7 @@ export const Title = styled.h2`
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
-    max-width: 50%;
+    max-width: 70%;
     margin-bottom: 20px;
     line-height: 44px;
 
@@ -78,14 +78,4 @@ export const JaTenhoText =  styled.p`
     line-height: 19x;
 
     color: #FFFFFF;
-`
-
-export const FazerLoginText =  styled.p`
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 19px;
-
-    color: #23DD7A;
 `
